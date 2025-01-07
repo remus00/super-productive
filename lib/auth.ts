@@ -72,10 +72,10 @@ export const authOptions: NextAuthOptions = {
         async session({ session, token }) {
             if (token) {
                 session.user.id = token.id;
-                session.user?.name = token.name;
-                session.user?.email = token.email;
-                session.user?.image = token.picture;
-                session.user?.username = token.username;
+                session.user.name = token.name;
+                session.user.email = token.email;
+                session.user.image = token.picture;
+                session.user.username = token.username;
             }
 
             const user = await db.user.findUnique({
@@ -85,8 +85,8 @@ export const authOptions: NextAuthOptions = {
             });
 
             if (user) {
-                session.user?.image = user.image;
-                session.user?.name = user.name.toLowerCase();
+                session.user.image = user.image;
+                session.user.name = user.name.toLowerCase();
             }
 
             return session;
